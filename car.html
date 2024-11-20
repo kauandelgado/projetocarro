@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarSphere - Detalhes do Carro</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Detalhes do Carro</h1>
+  </header>
+
+  <main>
+    <div id="car-details">
+      <img id="car-image" src="" alt="Imagem do Carro">
+      <h2 id="car-name"></h2>
+      <p id="car-info"></p>
+    </div>
+    <button id="back-button">Voltar</button>
+  </main>
+
+  <script>
+    // Dados dos carros
+    const carDetails = {
+      "Fiat Uno": {
+        marca: "Fiat",
+        preco: "R$ 45.000",
+        cor: "Vermelho",
+        descricao: "Um carro compacto, ideal para o dia a dia.",
+        imagem: "fiat-uno.img.jpg"
+      },
+      "Onix Plus": {
+        marca: "Chevrolet",
+        preco: "R$ 85.000",
+        cor: "Vermelho",
+        descricao: "Sedan espaçoso, perfeito para famílias.",
+        imagem: "onix-plus.img.jpg"
+      },
+      "Amarok V6": {
+        marca: "Volkswagen",
+        preco: "R$ 250.000",
+        cor: "Cinza",
+        descricao: "Uma picape robusta, com motor potente.",
+        imagem: "amarok-v6.img.jpg"
+      },
+      "Tracker": {
+        marca: "Chevrolet",
+        preco: "R$ 140.000",
+        cor: "Cinza",
+        descricao: "SUV compacto e cheio de tecnologia.",
+        imagem: "tracker.img.jpg"
+      },
+      "Sportage": {
+        marca: "Kia",
+        preco: "R$ 190.000",
+        cor: "Branco",
+        descricao: "Design moderno e ótima performance.",
+        imagem: "sportage.img.jpg"
+      },
+      "S10": {
+        marca: "Chevrolet",
+        preco: "R$ 210.000",
+        cor: "Preto",
+        descricao: "Picape versátil para trabalho ou lazer.",
+        imagem: "S10.img.jpg"
+      },
+      "HB20": {
+        marca: "Hyundai",
+        preco: "R$ 80.000",
+        cor: "Preto",
+        descricao: "Hatch econômico e com design arrojado.",
+        imagem: "HB20.img.jpg"
+      },
+      "Strada": {
+        marca: "Fiat",
+        preco: "R$ 95.000",
+        cor: "Branca",
+        descricao: "Compacta, robusta e prática para o trabalho.",
+        imagem: "Strada.img.jpg"
+      },
+      "Mercedes-Benz C180": {
+        marca: "Mercedes-Benz",
+        preco: "R$ 280.000",
+        cor: "Branca",
+        descricao: "Luxo, conforto e performance excepcionais.",
+        imagem: "Mercedes-Benz.img.jpg"
+      },
+      "BMW 320i": {
+        marca: "BMW",
+        preco: "R$ 300.000",
+        cor: "Cinza",
+        descricao: "Uma experiência premium de direção.",
+        imagem: "BMW-320i.img.jpg"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const carName = params.get('name');
+
+    if (carName && carDetails[carName]) {
+      const car = carDetails[carName];
+      document.getElementById('car-name').innerText = carName;
+      document.getElementById('car-image').src = `images/${car.imagem}`;
+      document.getElementById('car-info').innerHTML = `
+        <strong>Marca:</strong> ${car.marca}<br>
+        <strong>Preço:</strong> ${car.preco}<br>
+        <strong>Cor:</strong> ${car.cor}<br>
+        <strong>Descrição:</strong> ${car.descricao}
+      `;
+    } else {
+      document.getElementById('car-name').innerText = "Carro não encontrado";
+      document.getElementById('car-info').innerText = "Desculpe, não conseguimos encontrar os detalhes deste carro.";
+    }
+
+    document.getElementById('back-button').addEventListener('click', () => {
+      window.history.back();
+    });
+  </script>
+</body>
+</html>
